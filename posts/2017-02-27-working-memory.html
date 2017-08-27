@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="认知科学,科普," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="最近在看《认知与设计》和《超负荷大脑》这两本书的时候，关注到一个在认知科学领域中非常重要的概念，“工作记忆”。写下这篇文章的动机，是想用写“科普”的方式强迫自己深入理解这个概念。 一个小故事早上9:42分，写程序的李查德像往常一样打开电脑，在自己的时间管理工具上添加了几个todo，戴上耳机，然后开始了一天的工作。25分钟后，他旁边的空位，王可达匆忙赶到，说了一声，早，然后大口吃起了手中的煎饼果子。">
+<meta name="keywords" content="认知科学,科普">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我们赖以生存的「工作记忆」">
+<meta property="og:url" content="http://yoursite.com/posts/2017-02-27-working-memory.html">
+<meta property="og:site_name" content="木叻">
+<meta property="og:description" content="最近在看《认知与设计》和《超负荷大脑》这两本书的时候，关注到一个在认知科学领域中非常重要的概念，“工作记忆”。写下这篇文章的动机，是想用写“科普”的方式强迫自己深入理解这个概念。 一个小故事早上9:42分，写程序的李查德像往常一样打开电脑，在自己的时间管理工具上添加了几个todo，戴上耳机，然后开始了一天的工作。25分钟后，他旁边的空位，王可达匆忙赶到，说了一声，早，然后大口吃起了手中的煎饼果子。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/working-memory.png">
+<meta property="og:image" content="http://yoursite.com/img/cangku.jpg">
+<meta property="og:image" content="http://yoursite.com/img/bb.jpg">
+<meta property="og:updated_time" content="2017-08-27T05:23:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我们赖以生存的「工作记忆」">
+<meta name="twitter:description" content="最近在看《认知与设计》和《超负荷大脑》这两本书的时候，关注到一个在认知科学领域中非常重要的概念，“工作记忆”。写下这篇文章的动机，是想用写“科普”的方式强迫自己深入理解这个概念。 一个小故事早上9:42分，写程序的李查德像往常一样打开电脑，在自己的时间管理工具上添加了几个todo，戴上耳机，然后开始了一天的工作。25分钟后，他旁边的空位，王可达匆忙赶到，说了一声，早，然后大口吃起了手中的煎饼果子。">
+<meta name="twitter:image" content="http://yoursite.com/img/working-memory.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/posts/2017-02-27-working-memory.html"/>
+
+
+
+
+
+  <title>我们赖以生存的「工作记忆」 | 木叻</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">木叻</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">木叻的博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/2017-02-27-working-memory.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="木叻">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="木叻">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">我们赖以生存的「工作记忆」</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-27T00:00:00+08:00">
+                2017-02-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/posts/2017-02-27-working-memory.html" class="leancloud_visitors" data-flag-title="我们赖以生存的「工作记忆」">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,027
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在看《认知与设计》和《超负荷大脑》这两本书的时候，关注到一个在认知科学领域中非常重要的概念，“工作记忆”。写下这篇文章的动机，是想用写“科普”的方式强迫自己深入理解这个概念。</p>
+<h2 id="一个小故事"><a href="#一个小故事" class="headerlink" title="一个小故事"></a>一个小故事</h2><p>早上9:42分，写程序的李查德像往常一样打开电脑，在自己的时间管理工具上添加了几个todo，戴上耳机，然后开始了一天的工作。<br>25分钟后，他旁边的空位，王可达匆忙赶到，说了一声，早，然后大口吃起了手中的煎饼果子。与此同时，项目经理在QQ群里发了一条消息， “十分钟后开个晨会”。<br>半小时后，晨会结束，李查德回到座位上，试图接着刚才的思路继续写代码，但又想起刚刚经理说起“KPI”的问题。他深吸了一口气，重新戴上耳机。<br>时间来到了上午11:14分59秒，微信提示音响起，李查德不看也知道，是群里每天都会讨论的一个重要问题，中午吃什么。<br>他回了一条“鱼香肉丝”和几个emoji表情，然后放下手机。瞄了一眼todo清单上的事项，不禁又深吸了一口气。</p>
+<a id="more"></a>
+<p>这可能是一个普通程序员的日常，当然，也可能是每一位现代职人的日常。</p>
+<p>在现代社会里，工作效率是衡量一个人的能力水平高低，甚至决定能否升职加薪的重要标准。而一个人的工作效率往往和他做事的注意控制力是分不开的。现代社会发展带来了空前庞大的信息量的同时，也带来了空前繁杂的信息干扰，这些干扰无时无刻不在夺取着我们的注意力，造成我们一系列的和“工作效率”有关的问题。<br>现如今，“ADHD”等一系列的和注意力有关的问题，都把研究指向了一个在认知科学中十分重要的领域上，那就是工作记忆。</p>
+<h2 id="什么是「工作记忆」"><a href="#什么是「工作记忆」" class="headerlink" title="什么是「工作记忆」"></a>什么是「工作记忆」</h2><p>有这么一则形象的比喻，如果把我们的大脑比作一台计算机的话，“长期记忆”是计算机的硬盘，“短期记忆”是内存，“工作记忆”就相当于计算机处理器的缓存。</p>
+<p>我们每天的活动，无论是阅读，写作，开会，敲代码，还是玩游戏，做饭，甚至是打电话，发微信，发邮件都需要工作记忆的全程参与。如果你对一个人失去了工作记忆会怎么样没有概念的话，可以尝试理解下面的一个句子，一条金鱼是没办法玩魔方或者阅读侦探小说的。</p>
+<p>“工作记忆”这个概念起初是在上世纪60年代，由认知心理学家米勒和普里布拉姆在他们合著的《计划与行为结构》一书中被首次提出，用于比较人和计算机思维模型间的差异。在那段时间里，这个概念其实主要指的是“短期记忆”。直到1974年，心理学家巴德利 （Alan Baddeley）提出了一个被主流学界认可的“工作记忆”模型。这个模型由一个负责处理视觉信息的组件，“视觉－空间画板”；一个负责处理语音信息的组件，“语音回路”；以及一个负责调控前两者及其所需注意力的组件，“中央控制系统”，三部分组成。在2000年的时候，巴德利为这个模型加入了第四个组件，“情景缓冲器”。顾名思义地说，这个组件负责处理人脑认知活动所需的情景信息，而这部分信息其实也包括了上面两种的“视觉”和“语音”信息，甚至可以这样说，它似乎就是人类”意识“的所在。</p>
+<p><img src="/img/working-memory.png"></p>
+<h2 id="神奇数字-7"><a href="#神奇数字-7" class="headerlink" title="神奇数字 7"></a>神奇数字 7</h2><p>认知心理学家米勒在1956年发表的一篇文章末尾写道：“世界七大奇迹，七宗罪，北斗七星，人生的七个阶段，七重地狱，七种主色调，七声音阶，七天为一星期”。</p>
+<p>可见数字7在我们的日常生活中似乎扮演着一个很有意思的角色。米勒在关于人类信息处理能力存在限度的假说中认为，一个正常人工作记忆的容量也恰好为7个单位。而后来，心理学家考恩的研究发现，米勒定义的工作记忆容量似乎是偏高的。在米勒的实验里，人们接收的信息是可以通过其相关性来组块化的，这使得测试者的工作记忆比实际上记住东西的数量更大。另外，米勒实验中的被测人群并没有以不同背景或年龄层来划分，而普遍是大学生群体，工作记忆容量在不同人群中的表现会有所差异，这当然是显而易见的。而后的研究者考虑到这些因素的影响，重新设计了实验，并得到工作记忆容量大约在4个左右的结论。</p>
+<h2 id="另一个比较形象的比喻"><a href="#另一个比较形象的比喻" class="headerlink" title="另一个比较形象的比喻"></a>另一个比较形象的比喻</h2><p>Jeff Johnson在《认知与设计》一书中提出了一个关于“工作记忆”的很形象的比喻。 </p>
+<p>把“记忆”看成是一个巨大，黑暗的仓库，各种长期记忆杂乱无章地被我们丢在仓库里。仓库的墙上有几扇门，分别代表我们的不同感官。 当我们通过这些感官感知到信息时，与之对应的门就会打开，这些被我们感知到的信息会经由这扇门进入仓库，同时也会带入一些光亮。 而后，仓库再次陷入黑暗的寂静。仓库的天花板上固定着4盏探照灯，它们就是我们所重视的“工作记忆”。这些探照灯会来回摇动，照亮仓库里的某个物体（长期记忆）， 直到它们从这个物体上移开，再照亮另一个物体。</p>
+<p><img src="/img/cangku.jpg"></p>
+<p>在这个比喻中，“光亮”指的是我们的注意聚焦点，也就是注意力。它也是工作记忆模型的核心所在。</p>
+<h2 id="关于神经结构和原理"><a href="#关于神经结构和原理" class="headerlink" title="关于神经结构和原理"></a>关于神经结构和原理</h2><p>在了解了工作记忆是什么之后，我们再来了解一下这个家伙在我们的大脑中究竟是如何运行的。</p>
+<p><img src="/img/bb.jpg"></p>
+<p>认知心理学家戈德曼 拉科奇的一项研究发现，当信息由被“感知”到被“记住”的过程中，存在一个“延迟活动期”。在这个阶段，和工作记忆相关的神经细胞会持续地发出信号流，而且即便在感知信息源消失后，这个活动也仍在继续，直到被“记住”，也就是被存储到工作记忆中。而一旦这个信号流中断，被感知到的信息就不会在工作记忆中保留了。<br>后来的许多研究者在此基础上开展了一些卓有成效的研究，并且在一项有关“工作记忆与注意力”的研究中发现一个有趣的现象。人脑中工作记忆与注意力在被使用时，大脑的额叶上回和顶内沟区都会处于被激活的状态。这似乎也意味着，当一个事物被我们注意到时，这个事物或许就已经被我们“记住”了。</p>
+<h2 id="一个进化的副产品"><a href="#一个进化的副产品" class="headerlink" title="一个进化的副产品"></a>一个进化的副产品</h2><p>一位与达尔文同时代的探险家，华莱士在研究人类进化适应性时曾提出过这样的疑问。在远古时期，一个智人只需一个比大猩猩的大脑稍大一点的脑容量就足够应付他们的日常心智和行为需求了，而事实上智人的脑容量远比他们所需要的更大，这似乎与进化的适应性法则并不一致。那么究竟为什么会这样呢。</p>
+<p>这个问题在心理学界主要有两种解释，进化心理学学者认为人类的智力，包括我们所说的工作记忆的出现，与人类社会关系，语言的出现及复杂文化的发展密不可分。另一些学者认为，智力本身只是一种进化的副产品。</p>
+<p>古生物学家古尔德曾举出了一些物种进化中真实存在的“副产品”，比如大熊猫的拇指，比如男人的乳头。对于我们的大脑来说，单个基因突变可能导致多个脑区结构发生变化，只要其中一个变化在进化时期起到关键作用，那么由于这次基因突变所产生脑区结构的一系列变化都可能被保留下来。比如阅读能力，工作记忆可能都是由于为了适应某个进化阶段产生了不相关的脑区结构变化而遗留下的副产品。这不禁让人怀疑，大脑皮层结构似乎也具有某种意义上的“可供性”。</p>
+<h2 id="可以提高工作记忆的tips"><a href="#可以提高工作记忆的tips" class="headerlink" title="可以提高工作记忆的tips"></a>可以提高工作记忆的tips</h2><p>首先，让我们来玩这样的一个游戏</p>
+<p>依次给出一串数字，“ 3   7   11   2   7   9   2   4 ” ，然后回想与最后一个数字4间隔1个单位的数字是否与之相同。<br>这个游戏叫作“n-back”，在上面的例子中，n=2，与数字4间隔1个单位的数字是9。当n=3时，就是回想数字4与间隔两个单位的数字是否相同，以此类推。当然这个游戏不能看见一个然后记在本子上。有人发现，普通人做到”4-back”时就会明显感觉到吃力了。这和我们之前对工作记忆的容量的了解基本上是一致的。有研究表明，常做”n-back”训练有助于工作记忆的提高，而这个提高的限度大约是18%。</p>
+<p>另外，有一项对佛教僧侣大脑活动的fMRI研究中发现，僧侣的和注意控制相关的脑区活动表现是强于普通人的。而这也似乎间接说明了，冥想活动对于注意控制力的提高存在着积极的相关性。那么按照上面所描述的注意力与工作记忆间的关系可以推测，从事冥想活动可能也会对人们工作记忆水平的提高有所帮助。</p>
+<p>在这里推荐一款比较有意思的脑力训练游戏： <a href="http://memorado.cn/" target="_blank" rel="external">Memorado</a></p>
+<h2 id="一个脑洞"><a href="#一个脑洞" class="headerlink" title="一个脑洞"></a>一个脑洞</h2><p>前些日子因为《降临》这部电影，看了原著《你一生的故事》，对小说中提到的外星人，七肢桶十分的着迷。以至于最近一段时间看什么概念都会不由自主地往七肢桶的“目的论”思维上面靠。在读《超负荷的大脑》的时候也产生了这样一个脑洞。按照“七肢桶”的思维方式来解释进化论的话，可以这样说，人类之所以会进化出智力（或者工作记忆等脑功能）是因为需要人类在未来的某个时间段有足够的科技能力前往地外，或者避免某种情形的毁灭。而智力的产生和提高对于人类的科技发展来说是必要的，所以人类的脑结构就恰好地向可以为人类带来更强智力水平的形态的方向改变。</p>
+<p>当然这只是一个脑洞，所以认真的话就输了。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li>《认知与设计：理解UI设计准则》</li>
+<li>《超负荷的大脑》</li>
+<li><a href="https://en.wikipedia.org/wiki/Working_memory" target="_blank" rel="external">维基百科－工作记忆</a></li>
+<li><a href="http://mp.weixin.qq.com/s/7KvvigM4tp9cN2PV-TJ_NQ" target="_blank" rel="external">工作记忆背后的故事 - 开智部落</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/认知科学/" rel="tag"># 认知科学</a>
+          
+            <a href="/tags/科普/" rel="tag"># 科普</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/2016-03-13-the-will-power-of-instinct.html" rel="next" title="一篇读后感">
+                <i class="fa fa-chevron-left"></i> 一篇读后感
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/2017-03-21-ashes-of-your-life.html" rel="prev" title="你一生的灰烬">
+                你一生的灰烬 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="木叻" />
+          <p class="site-author-name" itemprop="name">木叻</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fl0ydwong" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/floydwong" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      zhihu
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/catinthelamp426" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      weibo
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一个小故事"><span class="nav-number">1.</span> <span class="nav-text">一个小故事</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是「工作记忆」"><span class="nav-number">2.</span> <span class="nav-text">什么是「工作记忆」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神奇数字-7"><span class="nav-number">3.</span> <span class="nav-text">神奇数字 7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#另一个比较形象的比喻"><span class="nav-number">4.</span> <span class="nav-text">另一个比较形象的比喻</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于神经结构和原理"><span class="nav-number">5.</span> <span class="nav-text">关于神经结构和原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个进化的副产品"><span class="nav-number">6.</span> <span class="nav-text">一个进化的副产品</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可以提高工作记忆的tips"><span class="nav-number">7.</span> <span class="nav-text">可以提高工作记忆的tips</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个脑洞"><span class="nav-number">8.</span> <span class="nav-text">一个脑洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">9.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">木叻</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">
+      11.7k
+    </span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("prFTny8u0zMsW1lQEGnizRty-gzGzoHsz", "f6hrGyxnF8Lnyc1A5ffS2sKC");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
