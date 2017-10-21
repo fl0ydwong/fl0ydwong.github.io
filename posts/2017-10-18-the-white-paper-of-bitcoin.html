@@ -103,7 +103,8 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://leee-j.com/img/bitcoin-01.png">
 <meta property="og:image" content="http://leee-j.com/img/bitcoin-02.png">
-<meta property="og:updated_time" content="2017-10-18T14:23:16.000Z">
+<meta property="og:image" content="http://leee-j.com/img/bitcoin-03.png">
+<meta property="og:updated_time" content="2017-10-21T15:54:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="&lt;译&gt;&quot;比特币：一种P2P电子现金系统&quot;">
 <meta name="twitter:description" content="最近在了解区块链和比特币方面的概念。看了一下wiki，有许多不明白的地方，就找到中本聪的白皮书来翻译，以求加深理解。  作者：Satoshi Nakamoto 摘要：纯粹的P2P电子货币允许一方到另一方的直接支付交易，不用通过任何金融机构。数字签名提供了部分的解决方案，但倘若一个可信的第三方机构仍需避免重复消费问题发生，那么主要收益就不复存在了。对于重复消费问题，我们使用p2p网络给出了一个解决">
@@ -354,7 +355,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,425
+                  2,425
                 </span>
               
 
@@ -392,6 +393,15 @@
 <p>我们需要一个方法，为了让收款人知道前一位持有者没签验任何更早的交易。以我们的角度，最早的交易是那个算数的，所以我们不用关心更晚一些的重复消费行为。确认缺席交易的唯一方法是了解全部交易。在造币厂模型中，造币厂知晓全部交易，并且能决定先来后到。要脱离可信机构完成这件事，交易就必须是广而告之的，并且我需要一个系统为了让参与者就他们收到的唯一历史命令达成一致。收款人需要每次交易时的证明，并且大多数节点同意它是第一时间收到的。</p>
 <h2 id="3-时间戳服务器"><a href="#3-时间戳服务器" class="headerlink" title="3.时间戳服务器"></a>3.时间戳服务器</h2><p>我们提出的这个解决方案来自于一个时间戳服务器。时间戳服务器靠取得一个区块时间戳的哈希值，并发布这则哈希值，就像在报纸或者有思网上一样。这个时间戳证明了数据在那个时刻必须存在，显然，以便生成哈希值。每个时间戳包括它前一个时间戳的哈希值，形成了一个链，和每个附加的时间戳一起，保护那些在它之前的区块。</p>
 <p><img src="/img/bitcoin-02.png"></p>
+<h2 id="4-工作量证明"><a href="#4-工作量证明" class="headerlink" title="4.工作量证明"></a>4.工作量证明</h2><p>要实现一个基于P2P的分布式时间戳服务器，我们需要使用一个类似于AdamBack的哈希现金，而不是报纸或者有思网。这个工作量证明涉及寻找一个值，当它被使用SHA-256哈希时，这个哈希值由许多个零比特起始。需要的平均工作量在所需的零比特数目上呈指数分布，并且，这个工作量可由执行单个哈希来验证。</p>
+<p>我们使用工作量证明的方式来构建时间戳服务器。这种方案是通过往区块中增加独立随机值，直到那个可以提供区块哈希所需要零比特的值被找到为止。一旦消耗CPU算力完成一次工作量证明，除了重做一次上述操作，这个区块就没办法改变了。这是因为，区块是链状的，如果我们要修改这个区块，就得包括它之后连着的所有区块。</p>
+<p><img src="/img/bitcoin-03.png"></p>
+<p>工作量证明也解决了在大多制定决策过程中那些决定表现的问题。如果大多数基于一个IP一票制，那么它将被任何有能力分配多个IP的人破坏。本质上，工作量证明是一CPU一票制。大多数的决定由最长的链代表，就是那个有着最大工作量证明计算投入的链。如果多数CPU算力被可靠的节点控制着，可靠的链就会长得最快，并且超过其它与之竞争的链。如果要更改任何一个之前的区块，攻击者就得重做这个区块以及它之后所有区块的工作量证明，这之后再撵上最可靠节点的工作。我们将会演示更慢的攻击者追赶行为的可能性会随着子区块的加入而指数削减。</p>
+<p>为了抵消增加硬件速度以及超时运行节点，我们让工作量证明的难度由一个活动的平均数来决定，这个平均数对应着每小时区块的平均数。如果它生成的太快，难度也就随之增加。</p>
+<h2 id="5-网络"><a href="#5-网络" class="headerlink" title="5.网络"></a>5.网络</h2><p>运行这个网络的步骤如下：</p>
+<p>1.新的交易会向所有节点广播。<br>2.每个节点把新的交易收集到一个区块里面。<br>3.每个节点会为其区块寻找一个困难的工作量证明。<br>4.当一个节点找到了一个工作量证明时，它会把这个区块 广播到所有节点上。<br>5.节点只有在所有在它到交易都是有效并且还没有被花掉才会接受这个区块。<br>6.节点通过在区块链中使用这个新得到的区块的哈希作为前一个哈希，生成下一个区块，以此来表明它们对这个新生成区块的接受。</p>
+<p>节点总是承认最长的链为那个正确的一个，并且会持续地致力于延长它。如果两个节点同时向所有节点广播了下一个不同版本的区块，一些节点会先收到其中一个或另一个。在那种情况下，这些节点操作<br>它们先收到的那个区块，也会把另一个分支保存起来，说不定它会变得更长。那些致力另一个分支上计算的节点会在之后转到更长的那个上去。</p>
+<p>新的交易不用广播到每一个节点上去。只要它们抵达多数节点，它们就会在不久以后形成一个区块。区块广播也可以容忍消息丢失发生。如果一个节点没收到区块，当它收到下一个区块并意识到它丢了一<br>个时，它会需要这个区块。（没太懂）</p>
 <p>待续…</p>
 <p>CHANGELOG:</p>
 <ul>
@@ -599,7 +609,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-介绍"><span class="nav-number">1.</span> <span class="nav-text">1.介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-交易"><span class="nav-number">2.</span> <span class="nav-text">2.交易</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-时间戳服务器"><span class="nav-number">3.</span> <span class="nav-text">3.时间戳服务器</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-介绍"><span class="nav-number">1.</span> <span class="nav-text">1.介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-交易"><span class="nav-number">2.</span> <span class="nav-text">2.交易</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-时间戳服务器"><span class="nav-number">3.</span> <span class="nav-text">3.时间戳服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-工作量证明"><span class="nav-number">4.</span> <span class="nav-text">4.工作量证明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-网络"><span class="nav-number">5.</span> <span class="nav-text">5.网络</span></a></li></ol></div>
             
 
           </div>
@@ -637,7 +647,7 @@
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
     <span title="Site words total count">
-      13.2k
+      14.2k
     </span>
   
 </div>
