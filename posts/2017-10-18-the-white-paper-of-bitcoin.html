@@ -104,7 +104,18 @@
 <meta property="og:image" content="http://leee-j.com/img/bitcoin-01.png">
 <meta property="og:image" content="http://leee-j.com/img/bitcoin-02.png">
 <meta property="og:image" content="http://leee-j.com/img/bitcoin-03.png">
-<meta property="og:updated_time" content="2017-10-21T16:45:43.000Z">
+<meta property="og:image" content="http://leee-j.com/img/bitcoin-04.png">
+<meta property="og:image" content="http://leee-j.com/img/bitcoin-05.png">
+<meta property="og:image" content="http://leee-j.com/img/bitcoin-06.png">
+<meta property="og:image" content="http://leee-j.com/img/bitcoin-07.png">
+<meta property="og:image" content="http://leee-j.com/img/bitcoin-08.png">
+<meta property="og:image" content="http://leee-j.com/img/bitcoin-09.png">
+<meta property="og:image" content="http://leee-j.com/img/bitcoin-10.png">
+<meta property="og:image" content="http://leee-j.com/img/bitcoin-11.png">
+<meta property="og:image" content="http://leee-j.com/img/bitcoin-12.png">
+<meta property="og:image" content="http://leee-j.com/img/bitcoin-13.png">
+<meta property="og:image" content="http://leee-j.com/img/bitcoin-14.png">
+<meta property="og:updated_time" content="2017-10-30T10:10:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="&lt;译&gt;&quot;比特币：一种P2P电子现金系统&quot;">
 <meta name="twitter:description" content="最近在了解区块链和比特币方面的概念。看了一下wiki，有许多不明白的地方，就找到中本聪的白皮书来翻译，以求加深理解。  作者：Satoshi Nakamoto 摘要：纯粹的P2P电子货币允许一方到另一方的直接支付交易，不用通过任何金融机构。数字签名提供了部分的解决方案，但倘若一个可信的第三方机构仍需避免重复消费问题发生，那么主要收益就不复存在了。对于重复消费问题，我们使用p2p网络给出了一个解决">
@@ -355,7 +366,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,844
+                  5,139
                 </span>
               
 
@@ -405,11 +416,43 @@
 <h2 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h2><p>按照惯例，区块中第一个交易是特殊的那个，它生成了一个由区块创建者所持有的比特币。这为节点增加了支持比特币网络的动机，并且为比特币的首次分发、流通提供了一条途径，原因是并没有中心权威机构发布它们。持续附加恒定数量的新比特币和金矿矿主通过消耗资源增加金子流通的行为是类似的。只不过在我们这，消耗的是CPU运行时间和电力。</p>
 <p>动机也会提供交易费用。如果一个交易的输出价值低于它的输入价值，那么差别就是附加到承载交易区块动机价值的交易费。一旦有先定数目的比特币进入流通，人们的动机会完全转化为交易费和它的完全抗通胀能力。</p>
 <p>动机促进和鼓励节点保持可靠性。如果贪心的攻击者有能力聚集比那些最可靠的节点更多的CPU算力，那么他就不得不在用这些算力偷回自己支付的比特币欺骗其他人，和用它来生成新的比特币之间选择。他应该会发现，实际上，遵守游戏规则是更有利可图的。与破坏系统以及自己拥有比特币财富的有效性相比，这些规则会给他比所有人加起来还多的比特币。</p>
-<p>待续…</p>
+<h2 id="回收磁盘空间"><a href="#回收磁盘空间" class="headerlink" title="回收磁盘空间"></a>回收磁盘空间</h2><p>一旦，一个比特币中最近的交易被埋藏在足够多的区块下时，在它被丢弃来节省磁盘空间之前，消耗就会执行。为了在不破坏区块哈希的情况下，促进这种方式，交易以Merkle树的方式哈希，这种哈希方式只涉及区块哈希中的一个根节点。在这之后，旧的区块就可以用斩断树分支的方式压缩。内部的哈希不需要保存。</p>
+<p><img src="/img/bitcoin-04.png"></p>
+<p>一个不带有交易的区块头部大概是80字节。如果我们假设，区块每十分钟生成一次，那么每年就是4.2MB。以2008年销售的典型2G内存的计算机系统来说，根据摩尔定律所预测的，现在每年以1.2GB的速度增长，尽管只有区块的头部被保存在内存中，存储空间也将是一个问题。</p>
+<h2 id="简化的支付校验"><a href="#简化的支付校验" class="headerlink" title="简化的支付校验"></a>简化的支付校验</h2><p>在不运行全部节点的情况下，校验支付是可能的。用户只需要保留一份最长工作量证明链的区块头，在网络节点中查询，直到他确信自己找到了那个最长的链，并且获得了那个把交易连向那个加了时间戳的区块，用户不能自己检查那个交易，但是通过把它连向这个链中的某处，他也能发现，网络节点接受了它，并且区块在它进一步确认网络已经接受它之后把它加进来。</p>
+<p><img src="/img/bitcoin-05.png"></p>
+<p>只要那些最为诚实的节点控制着比特币网络，那么这个校验就是可靠的，如果网络被攻击者控制，校验就变得更脆弱了。尽管网络节点可以为它们自己校验交易，只要攻击者能继续控制着网络，这种简化的校验仍能被攻击者以伪造交易的方式欺骗。一个防止这种情况发生的策略是，当它们侦测到一个无效的区块时，就提示用户的软件下载全部区块，并提示被警告交易确认它的不一致性。那些收到频繁支付的交易可能仍想要为了更多独立安全性以及更快的校验，来运行它们自己的节点。</p>
+<h2 id="组合及分离数据"><a href="#组合及分离数据" class="headerlink" title="组合及分离数据"></a>组合及分离数据</h2><p>尽管个人处理这些比特币是可能的，但为每个比特分做一次单独的交易却显得有些笨拙。为了让比特币的价值可以被分开或组合，交易包含了许多的输入和输出。通常，会有来自于之前的更大交易的单一输入，或者来自于许多组合起来的小量输入，并且最多两个输出：一个代表支付，一个代表收到的反馈，如果有任何一个，则返回给发送者。</p>
+<p><img src="/img/bitcoin-06.png"></p>
+<p>应该指出的是，在扇出中依赖若干交易的交易，以及那些依赖更多的，在这里并不是个问题。这里也永远不用提取一次交易历史的全部单独的拷贝。</p>
+<h2 id="隐私"><a href="#隐私" class="headerlink" title="隐私"></a>隐私</h2><p>传统银行模型通过限制进入多方以及可信第三方机构信息来达到某种程度的隐私化。公开播报所有交易的必要性阻止了这种办法，但是隐私仍能通过在其它地方破坏信息流的方式维持着：这就是，保持公钥匿名。公众能看见某人正在向另一个人发送的总量，但没法了解有关交易的任何信息。这和由库存交换释放出的信息等级类似，时间和个人交易规模，the “tape” ，被公开了，而不用判断它们是谁。</p>
+<p><img src="/img/bitcoin-07.png"></p>
+<p>作为额外的防火墙，新的键对应被用于任何交易，以防止它们连接着一个共同的拥有者。然而一些有多输入交易的连接仍是不可避免的，这些交易必要地泄漏出它们的输入是同一个拥有者所共有的。这样做的风险是，如果一个键的所有者被泄漏了，连接就可能会泄漏属于同一所有者的其它交易。</p>
+<h2 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h2><p>我们认为，攻击者的方案是试图比可靠的链更快生成一个可选的链。即使它已经完成了，系统也不会武断地变化，比如凭空捏造价值，或是拿走那些不属于攻击者的钱。节点不会接受无效的交易作为支付，可靠的节点也永远不会接受一个含有这些无效交易的区块。攻击者只能试图改变自己做过交易中的一个，拿回自己最近花掉的部分。</p>
+<p>诚实玩家的链与攻击者链之间的竞赛有着二项随机过程的特点。成功事件是可靠链被一个区块延长，它的首位加一，失败事件则是攻击者链被一个区块延长，间隔减一。</p>
+<p>攻击者弥补既定不足的可能性和赌徒破产问题类似。假设有一个无限信用的赌徒，他起初没有多少筹码，玩了无限次的尝试来保本。我们可以计算出他保本的可能性，或是攻击者的链赶上可靠链的可能性，正如下面给出的式子：</p>
+<p><img src="/img/bitcoin-08.png"></p>
+<p>我们假设p&gt;q（可靠&gt;攻击者），可能性就会以指数的形式陡降，原因是攻击者所要赶上的区块数增加了。由于他成功的机会本来就渺茫，如果他不在最开始时做一次侥幸的冲刺，那么当他落在后面时，他翻盘的机会也就可以忽略不计了。</p>
+<p>我们现在认为，一个新交易的接收者在充分确定之前需要等待的时间，是以发送者不能改变这个交易为基准的。我们假设发送的人是一个攻击者，他想要让接受者相信他已经付过钱了，接着让接收者退钱给自己。当这种事发生时，接收者会收到警报，但是发送者总希望为时已晚。</p>
+<p>接收者生成一个新键对，并且在签名前暂时把公钥交给发送者。这防范了发送者通过提前准备一个区块链，一直工作直到他侥幸遥遥领先，接着在那个时刻，进行这笔交易。一旦这笔交易被发送，不可靠的发送者就会开始秘密地运作一个装有自己可替换版交易的平行链。</p>
+<p>接收者等待，直到交易已经被加入到一个区块中，并且z区块已经链到它之后。他不了解攻击者取得的确定的进展，但是假设可靠的区块，攻击者潜在的进程将会是一个有着如下期望的柏松分布：</p>
+<p><img src="/img/bitcoin-09.png"></p>
+<p>为了得到攻击者到目前为止仍能赶上的可能性，我们将为到此为止的每个他已经取得进展的数目乘上柏松密度：</p>
+<p><img src="/img/bitcoin-10.png"></p>
+<p>让我们重新整理一下这个式子，避免这个分布的无穷尾部做和…</p>
+<p><img src="/img/bitcoin-11.png"></p>
+<p>转化成C语言代码：</p>
+<p><img src="/img/bitcoin-12.png"></p>
+<p>从运行后得到的结果中我们可以发现，可能性伴随参数z以指数的形式陡降</p>
+<p><img src="/img/bitcoin-13.png"></p>
+<p>P小于0.1%的解：</p>
+<p><img src="/img/bitcoin-14.png"></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>至此，我们已经提出了一个不需要依赖信任来运行的电子交易网络。我们从一个常见的，由数字签名构成的硬币开始，这虽然可以为我们的网络中提供强大的所有权掌控力，却没办法避免重复消费问题。为了解决这个问题，我们提出了一个使用工作量证明来记录那些交易的公共历史的P2P网络，从计算机上来说，这使得攻击者要在可靠节点控制着主要CPU算力的情况下篡改交易是不切实际的。这个网络在它非结构化的简洁性上是健壮的。节点之间很少同时配合着彼此工作。由于消息没有被路由到任何特定的地方，只要尽力被分发出去就可以了，因而它们不需要被识别。节点可以随意离开或加入到网络中，接受工作量证明作为当它们离开时发生了什么的证明。它们以自己投入的CPU算力，延伸这些区块来表示对它们的接受，用拒绝在它们身上投入算力来表示拒收。所有需要的的规则和奖励在这种一致性机制下，可以是强制的。</p>
 <p>CHANGELOG:</p>
 <ul>
 <li>171018  muler创建</li>
 <li>171022  加入工作量证明，网络，动机部分的翻译内容</li>
+<li>171030  加入回收磁盘空间，简化的支付校验，组合及分离数据，隐私，计算，结论部分的翻译内容</li>
 </ul>
 
       
@@ -613,7 +656,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#交易"><span class="nav-number">2.</span> <span class="nav-text">交易</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间戳服务器"><span class="nav-number">3.</span> <span class="nav-text">时间戳服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作量证明"><span class="nav-number">4.</span> <span class="nav-text">工作量证明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络"><span class="nav-number">5.</span> <span class="nav-text">网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动机"><span class="nav-number">6.</span> <span class="nav-text">动机</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#交易"><span class="nav-number">2.</span> <span class="nav-text">交易</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间戳服务器"><span class="nav-number">3.</span> <span class="nav-text">时间戳服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作量证明"><span class="nav-number">4.</span> <span class="nav-text">工作量证明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络"><span class="nav-number">5.</span> <span class="nav-text">网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动机"><span class="nav-number">6.</span> <span class="nav-text">动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回收磁盘空间"><span class="nav-number">7.</span> <span class="nav-text">回收磁盘空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简化的支付校验"><span class="nav-number">8.</span> <span class="nav-text">简化的支付校验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合及分离数据"><span class="nav-number">9.</span> <span class="nav-text">组合及分离数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐私"><span class="nav-number">10.</span> <span class="nav-text">隐私</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算"><span class="nav-number">11.</span> <span class="nav-text">计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">12.</span> <span class="nav-text">结论</span></a></li></ol></div>
             
 
           </div>
@@ -651,7 +694,7 @@
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
     <span title="Site words total count">
-      14.6k
+      16.9k
     </span>
   
 </div>
