@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="python," />
 
 
 
@@ -93,16 +93,20 @@
 
 
 
-<meta name="description" content="擅长冷场">
-<meta property="og:type" content="website">
-<meta property="og:title" content="muler的集装箱">
-<meta property="og:url" content="http://leee-j.com/archives/2015/12/index.html">
+<meta name="description" content="写程序的李查德在学习python的时候遇上了点难题。 第一日李查德写了一个demo，分别用单线程和多线程执行10亿次整数乘法操作，他发现，多线程运行时间比单线程慢了将近一倍。这让李查德有点困惑。 “多线程的效率应该比单线程高才对啊”，李查德挠着头自言自语许久。">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="蟒语多线程三日谈">
+<meta property="og:url" content="http://leee-j.com/posts/2017-11-15-three-days-of-python-cocurrent.html">
 <meta property="og:site_name" content="muler的集装箱">
-<meta property="og:description" content="擅长冷场">
+<meta property="og:description" content="写程序的李查德在学习python的时候遇上了点难题。 第一日李查德写了一个demo，分别用单线程和多线程执行10亿次整数乘法操作，他发现，多线程运行时间比单线程慢了将近一倍。这让李查德有点困惑。 “多线程的效率应该比单线程高才对啊”，李查德挠着头自言自语许久。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://leee-j.com/img/jbgz.jpg">
+<meta property="og:updated_time" content="2017-11-15T15:34:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="muler的集装箱">
-<meta name="twitter:description" content="擅长冷场">
+<meta name="twitter:title" content="蟒语多线程三日谈">
+<meta name="twitter:description" content="写程序的李查德在学习python的时候遇上了点难题。 第一日李查德写了一个demo，分别用单线程和多线程执行10亿次整数乘法操作，他发现，多线程运行时间比单线程慢了将近一倍。这让李查德有点困惑。 “多线程的效率应该比单线程高才对啊”，李查德挠着头自言自语许久。">
+<meta name="twitter:image" content="http://leee-j.com/img/jbgz.jpg">
 
 
 
@@ -132,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://leee-j.com/archives/2015/12/"/>
+  <link rel="canonical" href="http://leee-j.com/posts/2017-11-15-three-days-of-python-cocurrent.html"/>
 
 
 
 
 
-  <title>归档 | muler的集装箱</title>
+  <title>蟒语多线程三日谈 | muler的集装箱</title>
   
 
 
@@ -157,7 +161,7 @@
     
   
 
-  <div class="container sidebar-position-right page-archive">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -261,111 +265,207 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 12 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h2 class="archive-year motion-element" id="archive-year-2015">2015</h2>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leee-j.com/posts/2017-11-15-three-days-of-python-cocurrent.html">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="muler">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="muler的集装箱">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/posts/2015-12-21-block.html" itemprop="url">
-              
-                <span itemprop="name">初识block</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">蟒语多线程三日谈</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-12-21T23:25:08+08:00"
-              content="2015-12-21" >
-          12-21
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-15T23:09:17+08:00">
+                2017-11-15
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/posts/2017-11-15-three-days-of-python-cocurrent.html" class="leancloud_visitors" data-flag-title="蟒语多线程三日谈">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  694
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/posts/2015-12-13-resourceful-arc.html" itemprop="url">
-              
-                <span itemprop="name">机智的ARC</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-12-13T21:52:23+08:00"
-              content="2015-12-13" >
-          12-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <p>写程序的李查德在学习python的时候遇上了点难题。</p>
+<h3 id="第一日"><a href="#第一日" class="headerlink" title="第一日"></a>第一日</h3><p>李查德写了一个demo，分别用单线程和多线程执行10亿次整数乘法操作，他发现，多线程运行时间比单线程慢了将近一倍。这让李查德有点困惑。</p>
+<p>“多线程的效率应该比单线程高才对啊”，李查德挠着头自言自语许久。</p>
+<a id="more"></a>
+<p>“因为python解释器不支持并行”</p>
+<p>一个巨大的身形出现在李查德后方，怀里还抱着一包分享装乐事薯片，边塞着边给李查德指点江山。<br>他是王可达，人称达哥，技术大牛，坐李查德隔壁，常给旁边的李查德分享“人生经验”。</p>
+<p>“达哥，python不是支持多线程么”</p>
+<p>“你说的是并发，这个python确实支持。它指的是python解释器可以运行多个线程，但在同一时间只能有一个线程执行。也就是说，你这四核i7不管怎么折腾也只能用得上一核。”</p>
+<p>看着李查德仍旧疑惑的眼神，王可达从桌上拽了一张纸，一支笔，大手一挥，画了幅图。</p>
+<p><img src="/img/jbgz.jpg"></p>
+<p>“并发呢，好比有两队人在排一个煎饼摊，谁来拿煎饼要听摊主的。并行呢，相当于两队人排两个煎饼摊，这两队人依次同步来拿煎饼。这里的两队人就是两个线程，摊主就是cpu。它的调度算法让这两个线程看上去是在同时执行的。明白了吧？”</p>
+<p>“浅显易懂，生动形象，给达哥点赞。不过达哥，我还有个问题，你刚说python解释器不支持并行，什么原理啊？” </p>
+<p>“听过GIL么，少年？”</p>
+<p>“没有”</p>
+<p>说着，王可达从桌上堆得一落书中抽了一本出来。</p>
+<p>“这本《python核心编程》送你了，第四章好好看看。”</p>
+<p>李查德接过书，谢过达哥后，翻了翻。</p>
+<p>以下是王可达划线的地方。</p>
+<p>P125页</p>
+<blockquote>
+<p> Python 代码的执行是由 Python 􏰒􏰓􏰔虚拟机(又名解释器主􏰕环)进行控制的。Python 在 设计时是这样考虑的，在主􏰖循环中同时只能有一个控制线程在执行，就像单核 CPU 系统中的多进程一样。内存中可以有许多程序，但是在任意给定时刻只能有一个程序在运行。同理，尽管 Python 解释器中可以运行多个线程，但是在任意给定时刻只有一个线程会被解释器执行。</p>
+<p>对 Python 􏰗􏰘虚拟机的访问是由全􏰙局解释器􏰚(GIL)控制的。这个􏰌锁就是用来保证同时只能有一个线程运行的。</p>
+</blockquote>
+<ul>
+<li>CHANGELOG:<ul>
+<li>20171115 创建</li>
+</ul>
+</li>
+</ul>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/2017-10-18-the-white-paper-of-bitcoin.html" rel="next" title="<译>"比特币：一种P2P电子现金系统"">
+                <i class="fa fa-chevron-left"></i> <译>"比特币：一种P2P电子现金系统"
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -373,6 +473,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -393,8 +497,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/img/avatar.png"
@@ -484,6 +597,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一日"><span class="nav-number">1.</span> <span class="nav-text">第一日</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -621,7 +750,6 @@
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
 
 
   
