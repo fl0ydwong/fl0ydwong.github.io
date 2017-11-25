@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="javascript," />
+  <meta name="keywords" content="python,编程," />
 
 
 
@@ -93,18 +93,23 @@
 
 
 
-<meta name="description" content="读蝴蝶书的一点笔记">
-<meta name="keywords" content="javascript">
+<meta name="description" content="这几天，写程序的李查德在学习python的时候遇上了点难题。 李查德写了一小段代码，分别测试使用单线程和多线程执行10亿次整数乘法操作。他发现，多线程操作要比单线程慢了很多。而且，不管他怎么增加线程数，cpu占用率只是在40%左右徘徊，更奇怪的是，随着线程数的增加，耗时反而更多了。这让李查德有点困惑。 为了找到李查德问题的根源，我们先从python的全局解释器锁谈起。">
+<meta name="keywords" content="python,编程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js学习笔记">
-<meta property="og:url" content="http://leee-j.com/posts/2015-03-30-js-learning(1).html">
+<meta property="og:title" content="蟒语并发入门">
+<meta property="og:url" content="http://leee-j.com/posts/2017-11-25-introduction-of-python-concurrency.html">
 <meta property="og:site_name" content="muler的集装箱">
-<meta property="og:description" content="读蝴蝶书的一点笔记">
+<meta property="og:description" content="这几天，写程序的李查德在学习python的时候遇上了点难题。 李查德写了一小段代码，分别测试使用单线程和多线程执行10亿次整数乘法操作。他发现，多线程操作要比单线程慢了很多。而且，不管他怎么增加线程数，cpu占用率只是在40%左右徘徊，更奇怪的是，随着线程数的增加，耗时反而更多了。这让李查德有点困惑。 为了找到李查德问题的根源，我们先从python的全局解释器锁谈起。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-26T13:46:05.000Z">
+<meta property="og:image" content="http://leee-j.com/img/bingfa.png">
+<meta property="og:image" content="http://leee-j.com/img/bingxing.png">
+<meta property="og:image" content="http://leee-j.com/img/threadmodel.png">
+<meta property="og:image" content="http://leee-j.com/img/elephant.jpg">
+<meta property="og:updated_time" content="2017-11-25T12:38:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js学习笔记">
-<meta name="twitter:description" content="读蝴蝶书的一点笔记">
+<meta name="twitter:title" content="蟒语并发入门">
+<meta name="twitter:description" content="这几天，写程序的李查德在学习python的时候遇上了点难题。 李查德写了一小段代码，分别测试使用单线程和多线程执行10亿次整数乘法操作。他发现，多线程操作要比单线程慢了很多。而且，不管他怎么增加线程数，cpu占用率只是在40%左右徘徊，更奇怪的是，随着线程数的增加，耗时反而更多了。这让李查德有点困惑。 为了找到李查德问题的根源，我们先从python的全局解释器锁谈起。">
+<meta name="twitter:image" content="http://leee-j.com/img/bingfa.png">
 
 
 
@@ -134,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="http://leee-j.com/posts/2015-03-30-js-learning(1).html"/>
+  <link rel="canonical" href="http://leee-j.com/posts/2017-11-25-introduction-of-python-concurrency.html"/>
 
 
 
 
 
-  <title>js学习笔记 | muler的集装箱</title>
+  <title>蟒语并发入门 | muler的集装箱</title>
   
 
 
@@ -277,7 +282,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leee-j.com/posts/2015-03-30-js-learning(1).html">
+    <link itemprop="mainEntityOfPage" href="http://leee-j.com/posts/2017-11-25-introduction-of-python-concurrency.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="muler">
@@ -294,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">js学习笔记</h1>
+          <h1 class="post-title" itemprop="name headline">蟒语并发入门</h1>
         
 
         <div class="post-meta">
@@ -306,8 +311,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-03-30T00:00:00+08:00">
-                2015-03-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-25T20:15:34+08:00">
+                2017-11-25
               </time>
             
 
@@ -324,7 +329,7 @@
 
           
           
-             <span id="/posts/2015-03-30-js-learning(1).html" class="leancloud_visitors" data-flag-title="js学习笔记">
+             <span id="/posts/2017-11-25-introduction-of-python-concurrency.html" class="leancloud_visitors" data-flag-title="蟒语并发入门">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -351,7 +356,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  910
+                  1,793
                 </span>
               
 
@@ -361,10 +366,6 @@
             </div>
           
 
-          
-              <div class="post-description">
-                  读蝴蝶书的一点笔记
-              </div>
           
 
         </div>
@@ -380,40 +381,51 @@
       
 
       
-        <p>最近在看蝴蝶书的过程中，对javascript的语言特性又有了一些新的了解。在这里做一些简要的记录和总结。</p>
+        <p>这几天，写程序的李查德在学习python的时候遇上了点难题。</p>
+<p>李查德写了一小段代码，分别测试使用单线程和多线程执行10亿次整数乘法操作。他发现，多线程操作要比单线程慢了很多。而且，不管他怎么增加线程数，cpu占用率只是在40%左右徘徊，更奇怪的是，随着线程数的增加，耗时反而更多了。这让李查德有点困惑。</p>
+<p>为了找到李查德问题的根源，我们先从python的全局解释器锁谈起。</p>
 <a id="more"></a>
-<p>##对象字面量</p>
-<p>对象字面量是js中的一种非常方便的对象创建的表示方式。<br>格式如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> jso=&#123;</div><div class="line">	name:<span class="string">"floyd"</span>,</div><div class="line">	age: <span class="number">24</span>,</div><div class="line">	school:&#123;</div><div class="line">		sname:<span class="string">"HNU"</span>,</div><div class="line">		location:<span class="string">"haerbin"</span></div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>可以发现，这种方式创建对象是允许嵌套的。</p>
-<p>##检索</p>
-<p>js提供两种取值方式：</p>
-<ul>
-<li>通过[]后缀阔住一个字符串表达式。如：kaka[“name”];</li>
-<li>通过 . 方式。如：kaka.name;</li>
-</ul>
-<p>##引用</p>
-<p>『对象通过引用来传递，它们永远不会被复制』。<br>需要注意：var a={},var b={},var c={};与a=b=c={};是不同的。</p>
-<p>##原型(prototype)</p>
-<p>『每个对象都连接到一个原型对象，并且它可以从中继承属性。所有通过对象字面量创建的对象都连接到Object.prototype』。<br>与java语法中的重写相似，拿equals()来说，如果没有在继承类中重写该方法，则会向上调用Object类中的方法。同样地，当我们想尝试去得到对象的某个属性值（或方法），但该对象并未声明属性值（或方法），这时，js会试着从原型对象中得到属性值（或方法）。这里引入原型链的概念，即从当前对象逐层向上到Object的对象链条。当然，如果在原型对象中没有找到该属性，那么结果就是undefined。这个过程被称为委托。</p>
-<p>##反射</p>
-<p>js提供了一种检索对象属性类型的方式。可以通过typeof 和 hasOwnProperty的方式来实现。<br>比如：typeof  kaka.name 返回’string’ ；kaka.hasOwnProperty(‘name’) 返回’true’</p>
-<p>##伪类</p>
-<p>js的<strong>原型机制(prototype)</strong>提供通过构造器函数产生对象的方式，利用这种方式可以间接达到’类’的继承效果。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//定义'父类'构造器</span></div><div class="line"> <span class="keyword">var</span> Mammal=<span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">   <span class="keyword">this</span>.name=name;</div><div class="line"> &#125;</div><div class="line"><span class="comment">//定义'父类'方法</span></div><div class="line">Mammal.prototype.get_name()=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   <span class="keyword">return</span> <span class="keyword">this</span>.name;</div><div class="line">&#125;</div><div class="line">Mammal.prototype.says=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   <span class="keyword">return</span> <span class="keyword">this</span>.saying;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//定义'子类'构造器</span></div><div class="line"><span class="keyword">var</span> Cat=<span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.name=name;</div><div class="line">  <span class="keyword">this</span>.saying=<span class="string">'meow'</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">//将父类对象赋给子类原型</span></div><div class="line">Cat.prototype=<span class="keyword">new</span> Mammal();</div><div class="line"></div><div class="line"><span class="keyword">var</span> myCat=<span class="keyword">new</span> Cat(<span class="string">'tomcat'</span>);</div><div class="line"><span class="built_in">document</span>.write(myCat.get_name()+<span class="string">":"</span>+myCat.says());  <span class="comment">//tomcat : meow</span></div></pre></td></tr></table></figure>
+<h2 id="一刀流，全局解释器锁"><a href="#一刀流，全局解释器锁" class="headerlink" title="一刀流，全局解释器锁"></a>一刀流，全局解释器锁</h2><p>全局解释器锁，也叫GIL。简单来说，对python虚拟机的访问全由它控制。python之父Rossum当初设计它的时候考虑，同一时间只能有一个线程在虚拟机中执行。GIL就是用来保证这种设计的机制。</p>
+<p>引入GIL的好处之一是让python内的对象模型支持并发访问，坏处也很明显，失去了多核处理器的并行运算能力。就是说，李查德无论怎么增加线程，增加循环次数，对于他的双核处理器来说都是无法完全占用的。</p>
+<p>由于GIL的存在，python多线程具备了天然的亲 I/O 特点。</p>
+<p>在I/O调用前，GIL会被python虚拟机释放掉，其它线程可以在I/O执行时运行。I/O比较少的程序，GIL也就很少被释放，它们会更倾向于与系统原生线程保持一致。这就是为什么python多线程做计算密集型操作效率低效。</p>
+<p>到此为止，李查德的困惑消解了一大半，那么线程数与耗时成反比是什么原因呢。</p>
+<p>为了彻底解决他的困惑，我们来了解一下到底什么是并发和多线程。</p>
+<h2 id="多刃之剑，并发编程"><a href="#多刃之剑，并发编程" class="headerlink" title="多刃之剑，并发编程"></a>多刃之剑，并发编程</h2><p>什么是并发，《深入理解计算机系统》一书中是这么说的：</p>
 <blockquote>
-<p><strong>新函数的对象被赋予一个prototype属性，它的值是一个包含constructor的属性且属性值为该新函数的对象。<br>这个prototype对象是存放继承特征的地方。<br>因为JavaScript语言没有提供一种方法去确定哪个函数是打算用来做构造器的，所以每个函数都会得到一个prototype对象<br>。constructor属性没有什么用，重要的是prototype对象。</strong></p>
+<p>如果逻辑控制流在时间上重叠，那么它就是并发的。</p>
 </blockquote>
-<p>##数组</p>
+<p>什么意思，想象一个场景，有两队人在一个煎饼摊前排队买煎饼，摊主按左右顺序分别为这两队人摊煎饼，如果他摊煎饼的速度足够快，快到0.5ms摊一个，那么在外面看来，摊主就好像是同时为两队人摊煎饼。在单核计算机中，煎饼摊是CPU核心，摊主是系统内核，为两队人摊煎饼的行为两组逻辑控制流，系统内核在同一个核心上不断调度两组逻辑控制流，让用户觉得这两组逻辑流是同时执行的，这就是并发。</p>
+<p><img src="/img/bingfa.png"></p>
+<h3 id="并行"><a href="#并行" class="headerlink" title="并行"></a>并行</h3><p>与并发相对，拿上面的例子来说，并行相当于两队人排两个煎饼摊。系统内核分别在两个CPU核心上不断调度两组控制流。</p>
+<p><img src="/img/bingxing.png"></p>
+<p>起初，计算机程序以同步顺序运行在单核性能低下的处理器上，伴随摩尔定律在近几十年来的应验，有人发现，现有程序不足以利用过剩的CPU性能，为了最大限度地使用计算机资源，并发编程应运而生。</p>
+<p>现代操作系统提供了三种方式实现并发，它们分别基于进程， I/O多路复用，和多线程。虽说前两种方式也可以实现并发，但是通常情况下我们不会使用它们，原因是进程间不共享地址空间，创建进程消耗太大，而I/O 多路复用程序编写难度较大，所以在这个意义上，并发编程等同于多线程编程。</p>
+<h3 id="多线程模型"><a href="#多线程模型" class="headerlink" title="多线程模型"></a>多线程模型</h3><p>线程，是运行于进程中的逻辑流，可以看作是轻量的进程，它结合了进程内核调度与I/O多路复用共享空间的优点。多线程就是多个运行于进程中的逻辑流，它们由系统内核调度，每个线程拥有自己的线程上下文，包括线程ID，栈，栈指针，程序计数器，通用目的寄存器和条件码等。</p>
+<p>每个进程拥有一个主线程，这个主线程是进程在执行的第一时间生成的那个线程。在某个时刻，主线程会创建另一个线程，这个线程叫作对等线程。从这个时间点起，这两个线程开始并发运行，线程上下文交替切换，直至主线程退出。</p>
+<p><img src="/img/threadmodel.png"></p>
+<p>到此为止，我们找到了李查德另一个困惑的原因，正是一个处理器的多线程上下文切换的开销造成了耗时增加。</p>
+<h4 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h4><p>在多线程场景中，经常出现操作同一资源的情况，比如对数据库，更新文件等操作。在这类情景中，经常存在因为多个线程分别同时操作了同一个变量而导致数据不一致等不可预测的情况，为了解决这个问题，我们使用同步来保证资源的一致性。</p>
+<p>计算机系统为并发程序提供了一个保护共享变量的区域，临界区。在临界区内，同一时刻只能有一个进程或线程运行。我们使用同步原语操作临界区，主要分为信号量和互斥锁两种。</p>
+<h5 id="锁机制"><a href="#锁机制" class="headerlink" title="锁机制"></a>锁机制</h5><p>有一个“大象放进冰箱分几步”的段子，相信我们对宋丹丹老师的回答印象深刻。那么如果把问题改成“把两个大象放进一个冰箱呢？”，我们会这么回答，“六步，把冰箱门打开，把大象放进去，把冰箱门关上。然后，把另一只大象也这样放进去就行了。”</p>
+<p><img src="/img/elephant.jpg"></p>
+<p>这和锁机制很像。在上面的例子中，我们需要把两头大象放进冰箱的任务，可以看作是两个线程在临界区操作一个共享变量。</p>
+<p>在python中，我们使用锁对象Lock的aquire()对一段代码加锁，使用release()释放锁。</p>
+<h5 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h5><p>信号量，semaphore，这种实现同步的方式由荷兰人Edsger Dijkstra 首先提出。它是具有非负整数值的全局变量，可以看作是一个计数器，当资源消耗时递减，反之则递增。它通过P V原语操作信号量s。P 和 V 来源于荷兰语中的Proberen(测试)，Verhogen(增加)。 </p>
+<p>与锁的实现相同，python中的信号量PV操作，简化为aquire()，和release()</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>正如《python核心编程》中所说，“由于线程的开销以及python解释器是单线程应用的事实，并不是所有的应用都可以从多线程中获益”。对蟒语来说，它的多刃剑更适合处理I/O，而非计算。</p>
+<p>不过话说回来，语言只是武器，只要能把boss打倒，管你用什么呢 :)</p>
+<p><br></p>
+<p>参考</p>
 <ul>
-<li>本质：数组的本质是对象，它继承自Array.prototype。与对象相似，它可以通过字面量的形式创建，只不过这里是由<strong>[ ]</strong>来声明的。</li>
-<li>特性：与对象不同的是，数组有一个独特的属性—-length，长度。需要注意的是javascript中的length属性是没有上界的。</li>
+<li><a href="https://book.douban.com/subject/26912767/" target="_blank" rel="external">《深入理解计算机系统》</a></li>
+<li><a href="https://book.douban.com/subject/26801374/" target="_blank" rel="external">《python核心编程》</a></li>
 </ul>
-<blockquote>
-<p><strong>如果你用大于或等于当前length的数字作为下标来存储一个元素，<br>那么length值会被增大以容纳新元素，不会发生数组越<br>界错误。length属性的值是这个数组的最大整数属性名加上1。它不一定等于属性的个数。最大值为4294967295。</strong></p>
-</blockquote>
-<p>数组中元素可以是数组，这样我们可以创建一个矩阵：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">  <span class="built_in">Array</span>.matrix=<span class="function"><span class="keyword">function</span>(<span class="params">m,n,initial</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> a,i,j,mat=[];</div><div class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;m;i+=<span class="number">1</span>)&#123;</div><div class="line">      a=[];</div><div class="line">      <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;n;j+=<span class="number">1</span>)&#123;</div><div class="line">        a[j]=initial;</div><div class="line">      &#125;</div><div class="line">      mat[i]=a;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> mat;</div><div class="line">  &#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> hehe=<span class="built_in">Array</span>.matrix(<span class="number">3</span>,<span class="number">3</span>,<span class="number">1</span>);</div><div class="line"><span class="comment">//1 1 1</span></div><div class="line"><span class="comment">//1 1 1</span></div><div class="line"><span class="comment">//1 1 1</span></div></pre></td></tr></table></figure>
+<p><br></p>
+<p>CHANGELOG:</p>
+<ul>
+<li>20171125 创建</li>
+</ul>
 
       
     </div>
@@ -431,7 +443,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag"># javascript</a>
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/编程/" rel="tag"># 编程</a>
           
         </div>
       
@@ -444,8 +458,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/2015-02-17-github-jekyll.html" rel="next" title="github+jekyll搭博攻略">
-                <i class="fa fa-chevron-left"></i> github+jekyll搭博攻略
+              <a href="/posts/2017-10-18-the-white-paper-of-bitcoin.html" rel="next" title="<译>"比特币：一种P2P电子现金系统"">
+                <i class="fa fa-chevron-left"></i> <译>"比特币：一种P2P电子现金系统"
               </a>
             
           </div>
@@ -453,10 +467,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/2015-04-04-closure.html" rel="prev" title="初识闭包">
-                初识闭包 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -508,8 +518,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/img/avatar.png"
@@ -599,6 +618,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一刀流，全局解释器锁"><span class="nav-number">1.</span> <span class="nav-text">一刀流，全局解释器锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多刃之剑，并发编程"><span class="nav-number">2.</span> <span class="nav-text">多刃之剑，并发编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#并行"><span class="nav-number">2.1.</span> <span class="nav-text">并行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程模型"><span class="nav-number">2.2.</span> <span class="nav-text">多线程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#同步"><span class="nav-number">2.2.1.</span> <span class="nav-text">同步</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#锁机制"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">锁机制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#信号量"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">信号量</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
