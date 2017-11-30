@@ -105,7 +105,7 @@
 <meta property="og:image" content="http://leee-j.com/img/bingxing.png">
 <meta property="og:image" content="http://leee-j.com/img/threadmodel.png">
 <meta property="og:image" content="http://leee-j.com/img/elephant.jpg">
-<meta property="og:updated_time" content="2017-11-25T12:59:33.000Z">
+<meta property="og:updated_time" content="2017-11-30T10:11:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="蟒语并发入门">
 <meta name="twitter:description" content="这几天，写程序的李查德在学习python的时候遇上了点难题。 李查德写了一小段代码，分别测试使用单线程和多线程执行10亿次整数乘法操作。他发现，多线程操作要比单线程慢了很多。而且，不管他怎么增加线程数，cpu占用率只是在40%左右徘徊，更奇怪的是，随着线程数的增加，耗时反而更多了。这让李查德有点困惑。 为了找到李查德问题的根源，我们先从python的全局解释器锁谈起。">
@@ -356,7 +356,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,793
+                  2,193
                 </span>
               
 
@@ -385,10 +385,11 @@
 <p>李查德写了一小段代码，分别测试使用单线程和多线程执行10亿次整数乘法操作。他发现，多线程操作要比单线程慢了很多。而且，不管他怎么增加线程数，cpu占用率只是在40%左右徘徊，更奇怪的是，随着线程数的增加，耗时反而更多了。这让李查德有点困惑。</p>
 <p>为了找到李查德问题的根源，我们先从python的全局解释器锁谈起。</p>
 <a id="more"></a>
-<h2 id="一刀流，全局解释器锁"><a href="#一刀流，全局解释器锁" class="headerlink" title="一刀流，全局解释器锁"></a>一刀流，全局解释器锁</h2><p>全局解释器锁，也叫GIL。简单来说，对python虚拟机的访问全由它控制。python之父Rossum当初设计它的时候考虑，同一时间只能有一个线程在虚拟机中执行。GIL就是用来保证这种设计的机制。</p>
-<p>引入GIL的好处之一是让python内的对象模型支持并发访问，坏处也很明显，失去了多核处理器的并行运算能力。就是说，李查德无论怎么增加线程，增加循环次数，对于他的双核处理器来说都是无法完全占用的。</p>
-<p>由于GIL的存在，python多线程具备了天然的亲 I/O 特点。</p>
-<p>在I/O调用前，GIL会被python虚拟机释放掉，其它线程可以在I/O执行时运行。I/O比较少的程序，GIL也就很少被释放，它们会更倾向于与系统原生线程保持一致。这就是为什么python多线程做计算密集型操作效率低效。</p>
+<h2 id="一刀流，全局解释器锁"><a href="#一刀流，全局解释器锁" class="headerlink" title="一刀流，全局解释器锁"></a>一刀流，全局解释器锁</h2><p>全局解释器锁，也叫GIL。简单来说，对python虚拟机的访问全由它控制。python之父Rossum当初设计它的时候，考虑到CPython解释器并非线程安全，于是他设计了GIL机制，让同一时间只有一个线程执行python字节码。</p>
+<p>引入GIL的好处之一是让python内的对象模型支持并发访问，坏处也很明显，失去了多核处理器的并行运算能力。就是说，李查德无论怎么增加线程，增加循环次数，对于他的双核处理器来说也只能使用其中一核。</p>
+<p>既然如此，python多线程是不是就毫无用处了？</p>
+<p>当然不是，它非常适合I/O操作。</p>
+<p>这是因为在I/O调用前，GIL会被python虚拟机释放掉，其它线程可以在I/O执行时运行。而在I/O比较少的程序中，GIL也就很少被释放，它们会更倾向于与系统原生线程保持一致。这也是python多线程做计算密集型操作效率低效的原因。</p>
 <p>到此为止，李查德的困惑消解了一大半，那么线程数与耗时成反比是什么原因呢。</p>
 <p>为了彻底解决他的困惑，我们来了解一下到底什么是并发和多线程。</p>
 <h2 id="多刃之剑，并发编程"><a href="#多刃之剑，并发编程" class="headerlink" title="多刃之剑，并发编程"></a>多刃之剑，并发编程</h2><p>什么是并发，《深入理解计算机系统》一书中是这么说的：</p>
@@ -397,14 +398,21 @@
 </blockquote>
 <p>什么意思，想象一个场景，有两队人在一个煎饼摊前排队买煎饼，摊主按左右顺序分别为这两队人摊煎饼，如果他摊煎饼的速度足够快，快到0.5ms摊一个，那么在外面看来，摊主就好像是同时为两队人摊煎饼。在单核计算机中，煎饼摊是CPU核心，摊主是系统内核，为两队人摊煎饼的行为两组逻辑控制流，系统内核在同一个核心上不断调度两组逻辑控制流，让用户觉得这两组逻辑流是同时执行的，这就是并发。</p>
 <p><img src="/img/bingfa.png"></p>
-<h3 id="并行"><a href="#并行" class="headerlink" title="并行"></a>并行</h3><p>与并发相对，拿上面的例子来说，并行相当于两队人排两个煎饼摊。系统内核分别在两个CPU核心上不断调度两组控制流。</p>
+<h3 id="并行"><a href="#并行" class="headerlink" title="并行"></a>并行</h3><p>什么是并行，与并发相对，拿上面的例子来说，并行相当于两队人排两个煎饼摊。系统内核分别在两个CPU核心上不断调度两组控制流。就是说，这里的摊主确实是在同时为两队人摊煎饼。</p>
 <p><img src="/img/bingxing.png"></p>
+<p>广义的并发与并行可以从“范畴论”与“集合论”的角度来描述。在范畴论描述中，并发比并行处于更高的范畴，它们一个关于结构，一个关于执行。在“集合论”的描述中，并行是并发的真子集。</p>
+<p>并发编程的历史可以说是计算机硬件的发展史。</p>
 <p>起初，计算机程序以同步顺序运行在单核性能低下的处理器上，伴随摩尔定律在近几十年来的应验，有人发现，现有程序不足以利用过剩的CPU性能，为了最大限度地使用计算机资源，并发编程应运而生。</p>
 <p>现代操作系统提供了三种方式实现并发，它们分别基于进程， I/O多路复用，和多线程。虽说前两种方式也可以实现并发，但是通常情况下我们不会使用它们，原因是进程间不共享地址空间，创建进程消耗太大，而I/O 多路复用程序编写难度较大，所以在这个意义上，并发编程等同于多线程编程。</p>
 <h3 id="多线程模型"><a href="#多线程模型" class="headerlink" title="多线程模型"></a>多线程模型</h3><p>线程，是运行于进程中的逻辑流，可以看作是轻量的进程，它结合了进程内核调度与I/O多路复用共享空间的优点。多线程就是多个运行于进程中的逻辑流，它们由系统内核调度，每个线程拥有自己的线程上下文，包括线程ID，栈，栈指针，程序计数器，通用目的寄存器和条件码等。</p>
-<p>每个进程拥有一个主线程，这个主线程是进程在执行的第一时间生成的那个线程。在某个时刻，主线程会创建另一个线程，这个线程叫作对等线程。从这个时间点起，这两个线程开始并发运行，线程上下文交替切换，直至主线程退出。</p>
+<p>每个进程拥有一个主线程，这个主线程是进程在执行的第一时间生成的那个线程。在某个时刻，主线程会创建另一个线程，这个线程叫作对等线程。从这个时间点起，这两个线程开始并发运行，线程上下文交替切换，直至主线程退出。就是说，如果线程目数越多，不但创建线程需要消耗的内存空间会增大，线程上下文间切换的时间也相应加长。</p>
 <p><img src="/img/threadmodel.png"></p>
 <p>到此为止，我们找到了李查德另一个困惑的原因，正是一个处理器的多线程上下文切换的开销造成了耗时增加。</p>
+<p>前面提到，python因其GIL机制并不适合计算密集型操作，那么有没有办法绕过GIL这座大山，使多核运算成为可能呢？</p>
+<p>答案是有的。一种方法是直接使用C语言编写管理GIL的库，开放GIL，自行启动系统线程，利用全部CPU核心，但这么做会增加库的代码复杂度。</p>
+<p>另一种办法是使用多进程代替多线程。</p>
+<h4 id="绕山之法，多进程"><a href="#绕山之法，多进程" class="headerlink" title="绕山之法，多进程"></a>绕山之法，多进程</h4><p>python2.6版本引入了multiprocessing模块，它允许多核CPU派生进程。不同的进程可以在CPU不同的核心上单独运行，因而充分利用CPU资源。</p>
+<p>除了multiprocessing，还可以通过concurrent.futures模块中的ProcessPoolExcutor来绕开GIL。</p>
 <h4 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h4><p>在多线程场景中，经常出现操作同一资源的情况，比如对数据库，更新文件等操作。在这类情景中，经常存在因为多个线程分别同时操作了同一个变量而导致数据不一致等不可预测的情况，为了解决这个问题，我们使用同步来保证资源的一致性。</p>
 <p>计算机系统为并发程序提供了一个保护共享变量的区域，临界区。在临界区内，同一时刻只能有一个进程或线程运行。我们使用同步原语操作临界区，主要分为信号量和互斥锁两种。</p>
 <h5 id="锁机制"><a href="#锁机制" class="headerlink" title="锁机制"></a>锁机制</h5><p>有一个“大象放进冰箱分几步”的段子，相信我们对宋丹丹老师的回答印象深刻。那么如果把问题改成“把两个大象放进一个冰箱呢？”，我们会这么回答，“六步，把冰箱门打开，把大象放进去，把冰箱门关上。然后，把另一只大象也这样放进去就行了。”</p>
@@ -420,11 +428,13 @@
 <ul>
 <li><a href="https://book.douban.com/subject/26912767/" target="_blank" rel="external">《深入理解计算机系统》</a></li>
 <li><a href="https://book.douban.com/subject/26801374/" target="_blank" rel="external">《python核心编程》</a></li>
+<li><a href="https://book.douban.com/subject/27028517/" target="_blank" rel="external">《流畅的python》</a></li>
 </ul>
 <p><br></p>
 <p>CHANGELOG:</p>
 <ul>
 <li>20171125 创建</li>
+<li>20171130 修改了GIL，并发，并行解释，增补多进程，加入更多逻辑线索</li>
 </ul>
 
       
@@ -632,7 +642,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一刀流，全局解释器锁"><span class="nav-number">1.</span> <span class="nav-text">一刀流，全局解释器锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多刃之剑，并发编程"><span class="nav-number">2.</span> <span class="nav-text">多刃之剑，并发编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#并行"><span class="nav-number">2.1.</span> <span class="nav-text">并行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程模型"><span class="nav-number">2.2.</span> <span class="nav-text">多线程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#同步"><span class="nav-number">2.2.1.</span> <span class="nav-text">同步</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#锁机制"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">锁机制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#信号量"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">信号量</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一刀流，全局解释器锁"><span class="nav-number">1.</span> <span class="nav-text">一刀流，全局解释器锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多刃之剑，并发编程"><span class="nav-number">2.</span> <span class="nav-text">多刃之剑，并发编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#并行"><span class="nav-number">2.1.</span> <span class="nav-text">并行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程模型"><span class="nav-number">2.2.</span> <span class="nav-text">多线程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#绕山之法，多进程"><span class="nav-number">2.2.1.</span> <span class="nav-text">绕山之法，多进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同步"><span class="nav-number">2.2.2.</span> <span class="nav-text">同步</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#锁机制"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">锁机制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#信号量"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">信号量</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li></ol></div>
             
 
           </div>
@@ -670,7 +680,7 @@
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
     <span title="Site words total count">
-      19.5k
+      19.9k
     </span>
   
 </div>
