@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ios," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -93,18 +93,16 @@
 
 
 
-<meta name="description" content="IOS runtime机制初探">
-<meta name="keywords" content="ios">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Runtime消息机制">
-<meta property="og:url" content="http://muler.top/posts/2016-01-26-runtime.html">
+<meta name="description" content="擅长冷场">
+<meta property="og:type" content="website">
+<meta property="og:title" content="muler的集装箱">
+<meta property="og:url" content="http://muler.top/tags/区块链/index.html">
 <meta property="og:site_name" content="muler的集装箱">
-<meta property="og:description" content="IOS runtime机制初探">
+<meta property="og:description" content="擅长冷场">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-26T13:45:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Runtime消息机制">
-<meta name="twitter:description" content="IOS runtime机制初探">
+<meta name="twitter:title" content="muler的集装箱">
+<meta name="twitter:description" content="擅长冷场">
 
 
 
@@ -134,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://muler.top/posts/2016-01-26-runtime.html"/>
+  <link rel="canonical" href="http://muler.top/tags/区块链/"/>
 
 
 
 
 
-  <title>Runtime消息机制 | muler的集装箱</title>
+  <title>标签: 区块链 | muler的集装箱</title>
   
 
 
@@ -159,7 +157,7 @@
     
   
 
-  <div class="container sidebar-position-right page-post-detail">
+  <div class="container sidebar-position-right ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -263,199 +261,54 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block tag">
 
-  
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>区块链<small>标签</small>
+        </h1>
+      </div>
 
-  
-  
-  
+      
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://muler.top/posts/2016-01-26-runtime.html">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="muler">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="muler的集装箱">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
+            <a class="post-title-link" href="/posts/2017-12-22-the-myth-and-truth-of-bitcoin.html" itemprop="url">
+              
+                <span itemprop="name">比特币的迷思与真相</span>
+              
+            </a>
         
-          <h1 class="post-title" itemprop="name headline">Runtime消息机制</h1>
-        
+      </h2>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-01-26T00:00:00+08:00">
-                2016-01-26
-              </time>
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-12-22T16:11:28+08:00"
+              content="2017-12-22" >
+          12-22
+        </time>
+      </div>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/posts/2016-01-26-runtime.html" class="leancloud_visitors" data-flag-title="Runtime消息机制">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  872
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-              <div class="post-description">
-                  IOS runtime机制初探
-              </div>
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h2 id="what-is-runtime"><a href="#what-is-runtime" class="headerlink" title="what is runtime?"></a>what is runtime?</h2><p>在了解runtime之前，我们先来熟悉一下静态绑定和动态绑定的概念。<br>静态绑定指的是在编译期，函数地址被硬编码在指令中，因而能确定运行时所调用的函数。C和java的函数调用就是基于静态绑定的。<br>而动态绑定则相反，在编译期，函数地址无法被编码到指令中，需要运行期才能被确定出来。OC就是基于动态绑定的，所以它本身是一门动态语言。</p>
-<p>Runtime就是一种OC作为一门动态语言的动态特性的体现。</p>
-<p>依然回到OC上，就我来说，它与自己之前熟悉的java在语法上有很大不同。<br>这种不同主要体现在函数调用上。</p>
-<p>比如，在java里可以使用obj.func( )来调用函数，而OC中则是[obj messageName]。</p>
-<p>对于OC来说，它由“Smalltalk”演化而来，因而继承了后者的一个重要性质，消息结构。<br>《Effective Objective-C》中有这样的说明：</p>
-<blockquote>
-<p>使用消息结构的语言，其运行时所应执行的代码由运行环境来决定；而使用函数调用的语言，则有编译器来决定。</p>
-</blockquote>
-<p>也就是说，OC的动态性其实本质上是因为其采用的消息结构。<br>下面来具体谈一谈这个“消息结构”中的消息。</p>
-<h2 id="关于消息"><a href="#关于消息" class="headerlink" title="关于消息"></a>关于消息</h2><p>在Objective-C中，方法调用这种行为以“传递消息”的形式实现。<br>[obj messageName]，这里的obj是消息的“接收者”(receiver),messageName叫做“选择子”（selector），它们合起来称为“消息”。发送消息时，这段代码会被编译器转化成一个C语言的调用，objc_msgSend()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">void objc_msgSend(id self,SEL cmd,...)</div></pre></td></tr></table></figure>
-<p>这个函数调用是消息传递机制中的核心。<br>首先会在类缓存中查看是否有方法的实现，有的话直接调用。如果没有，它会沿着这个接收者的继承链依次向上，查看方法列表中是否含有与其相符的方法。<br>如果有就跳转至其实现代码，没有则继续向上查找。<br>如果到继承链首端依然找不到这个方法，则会执行“消息转发”</p>
-<h2 id="消息转发机制"><a href="#消息转发机制" class="headerlink" title="消息转发机制"></a>消息转发机制</h2><p>消息转发分为两个阶段：第一阶段先征询接收者，所属的类，看其是否能动态添加方法，以处理当前这个“未知选择子”。<br>这叫做“动态方法解析”。第二阶段涉及“完整的消息转发机制”。如果运行期系统已经把第一阶段执行完了，那么接收者自己就无法再以动态新增方法的手段来响应<br>包含该选择子的消息了。此时，运行期系统会请求接收者看看有没有其他对象能处理与消息相关的方法调用。这里又细分为两小步，首先请接收者看看有没有其他对象能处理这条消息。<br>如果有，则运行期系统会把消息转给那个对象，于是消息转发过程结束。若没有“备援接收者”（replacement receiver）,则启动完整的消息转发机制，运行期系统会把鱼消息有关的<br>全部细节都封装到NSInvocation对象中，再给接收者最后一次机会，令其设法解决当前还未处理的这一段消息。</p>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/ios/" rel="tag"># ios</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/posts/2015-12-21-block.html" rel="next" title="初识block">
-                <i class="fa fa-chevron-left"></i> 初识block
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/2016-03-13-the-will-power-of-instinct.html" rel="prev" title="一篇读后感">
-                一篇读后感 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
       
     </div>
+
   </div>
+  
+  
+  
+
+  
 
 
           </div>
@@ -463,10 +316,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -487,17 +336,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/img/avatar.png"
@@ -587,22 +427,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#what-is-runtime"><span class="nav-number">1.</span> <span class="nav-text">what is runtime?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于消息"><span class="nav-number">2.</span> <span class="nav-text">关于消息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息转发机制"><span class="nav-number">3.</span> <span class="nav-text">消息转发机制</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -737,10 +561,10 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-
+  
 
   
 
